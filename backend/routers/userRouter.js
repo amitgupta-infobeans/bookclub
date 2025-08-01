@@ -1,10 +1,20 @@
 const express = require("express");
+
+// Controller functions
 const { loginUser, registerUser, logoutUser } = require("../controllers/User");
-const { registerValidate } = require("../middleware/user.middleware");
+
+// Middleware for validation
+const {
+  registerValidate,
+  loginValidate,
+} = require("../middleware/user.middleware");
+
 const userRouter = express.Router();
 
-userRouter.post("/register", registerValidate, registerUser);
-userRouter.post("/login", loginUser);
-userRouter.post("/logout", logoutUser);
+// Routes
+userRouter.post("/register", registerValidate, registerUser); // register route with validation
+userRouter.post("/login", loginValidate, loginUser); // login route with validation
+userRouter.get("/logout", logoutUser); // logout route
 
+// Export router
 module.exports = { userRouter };
