@@ -10,11 +10,13 @@ const readingListSchema = new mongoose.Schema(
       ref: "User",
       required: [true, "userId is required field"],
     },
-    bookId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Book",
-      required: [true, "bookId is required field"],
-    },
+    bookId: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Book",
+        required: [true, "bookId is required field"],
+      },
+    ],
   },
   { timestamps: true }
 );

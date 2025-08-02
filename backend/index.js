@@ -4,6 +4,7 @@ const cors = require("cors"); //load cors
 const { bookRouter } = require("./routers/bookRouter");
 const { userRouter } = require("./routers/userRouter");
 const { readingListRouter } = require("./routers/readingListRouter");
+const { ratingAndReviewRouter } = require("./routers/ratingAndReviewRouter");
 const { connectDB } = require("./config/dbconnect");
 
 const path = require("path");
@@ -19,7 +20,7 @@ app.use("/static", express.static(path.join(__dirname, "/uploads")));
 
 app.use("/api/user", userRouter);
 app.use("/api/book", bookRouter);
-// app.use("/api", ratingAndReviewRouter);
+app.use("/api/ratingandreview", ratingAndReviewRouter);
 app.use("/api/addremovefavourite", readingListRouter);
 // app.use("/api/search", searchBook)
 // app.use("/api/filterbooks", allBooksWithFilter)
@@ -31,7 +32,6 @@ app.use("/", (req, res) => {
     message: `Route not found: ${req.method} ${req.originalUrl}`,
   });
 });
-
 
 app.listen(process.env.BACKEND_PORT || 4000, async () => {
   await connectDB();
