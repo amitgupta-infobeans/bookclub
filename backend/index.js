@@ -5,6 +5,8 @@ const { bookRouter } = require("./routers/bookRouter");
 const { userRouter } = require("./routers/userRouter");
 const { readingListRouter } = require("./routers/readingListRouter");
 const { ratingAndReviewRouter } = require("./routers/ratingAndReviewRouter");
+const { searchBookRouter } = require("./routers/searchBookRouter");
+
 const { connectDB } = require("./config/dbconnect");
 
 const path = require("path");
@@ -22,8 +24,7 @@ app.use("/api/user", userRouter);
 app.use("/api/book", bookRouter);
 app.use("/api/ratingandreview", ratingAndReviewRouter);
 app.use("/api/addremovefavourite", readingListRouter);
-// app.use("/api/search", searchBook)
-// app.use("/api/filterbooks", allBooksWithFilter)
+app.use("/api/search", searchBookRouter);
 
 // to handle undefined routes
 app.use("/", (req, res) => {
